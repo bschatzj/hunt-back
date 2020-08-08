@@ -12,6 +12,7 @@ app.use(express.json());
  * PURPOSE: Get all tasks
  */
 app.get("/todo", async (req, res) => {
+    console.log(db('todo'))
   const todos = await db("todo");
   res.json({ todos });
 });

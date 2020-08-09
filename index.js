@@ -1,39 +1,19 @@
 const express = require("express");
-
-const db = require("./data/db.js");
-
+const helmet = require('helmet');
+const cors = require('cors');
+const apiRouter = require('./Routes/api-router')
 const app = express();
 
 app.use(express.json());
+app.use(helmet())
+app.use(cors())
 
-/**
- * METHOD: GET
- * ROUTE: /todo
- * PURPOSE: Get all tasks
- */
-app.get("/todo", async (req, res) => {
-    console.log(db('todo'))
-  const todos = await db("todo");
-  res.json({ todos });
-});
 
-/**
- * METHOD: POST
- * ROUTE: /todo
- * PURPOSE: Create new task
- */
-app.post("/todo", async (req, res) => {
-  const { task } = req.body;
-  const newTodo = await db("todo")
-    .insert(task)
-    .then(item => {
-      return item.rowCount;
-    });
-    
-  if (newTodo === 1) {
-    return res.status(201).json({ message: "Todo created successfully" });
-  }
-});
+app.get('/', (req, res) => {
+    res.status(200).json({ Server: 'Running' })
+})
+
+app.use('/api', apiRouter)
 
 const PORT = process.env.PORT || 3500;
 

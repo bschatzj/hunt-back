@@ -17,4 +17,15 @@ jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
 })
 }
 
-module.exports = { authenticate }
+
+const generateToken = user => {
+  const payload = {
+    ...user,
+  }
+  const options = {
+    expiresIn: '1d',
+  }
+  return jwt.sign(payload, JWT_SECRET, options)
+}
+
+module.exports = { authenticate, generateToken }

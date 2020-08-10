@@ -11,6 +11,7 @@ const valBody = (req, res, next) => {
 }
 
 const validatePassword = async (req, res, next) => {
+    console.log('working')
     const user = await db('users as u')
         .where('email', req.body.email)
         .first()

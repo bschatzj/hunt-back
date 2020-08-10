@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken'),
-{ JWT_SECRET } = require('../../env')
 
-const authenticate = async (req, res, next) => {
+
+authenticate = async (req, res, next) => {
 const token = req.headers.Authorization
 if (!token)
   return res

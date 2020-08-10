@@ -15,6 +15,7 @@ const validatePassword = async (req, res, next) => {
     const user = await db('users as u')
         .where('email', req.body.email)
         .first()
+        console.log('right password')
     if (!user || !bcrypt.compareSync(req.body.password, user.password))
         return res
             .status(401)

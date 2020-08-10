@@ -4,9 +4,9 @@ const router = require('express-promise-router')(),
 module.exports = router
 
 router.post('/newgame', (req, res) => {
-    NewGame(req.body)
+    const Game = NewGame(req.body)
 
-    res.status(200).json({ message: `Game ${req.body.title} was succesfully created` })
+    res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameId: Game.game_id })
 
 })
 router.use((err, req, res, next) =>

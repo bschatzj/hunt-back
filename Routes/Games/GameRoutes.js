@@ -13,7 +13,7 @@ router.post('/newgame', async (req, res) => {
         private: req.body.private,
     })
     const GameInfo =  await db('game')
-        .where('game_title', req.title)
+        .where('game_title', req.body.title)
         .first()
 
     res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameId: GameInfo.game })

@@ -4,18 +4,17 @@ const db = require('../../data/db')
 
 
 
-
 module.exports = router
 
-router.post('/newgame', (req, res) => {
-    db('game').insert({
+router.post('/newgame', async (req, res) => {
+    await db('game').insert({
         game_title: req.body.title,
         password: req.body.password,
         private: req.body.private,
     })
-    const GameInfo = db('game')
+    const GameInfo =  await db('game')
         .where('game_title', newGame.title)
         .first()
 
-    res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameId: GameInfo.game_id })
+    res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameId: GameInfo.game })
 })

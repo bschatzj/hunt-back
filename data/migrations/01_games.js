@@ -1,7 +1,9 @@
 exports.up = knex =>
   knex.schema.createTable("game", tbl => {
     tbl.increments('game_id');
-    tbl.text('game_title');
+    tbl.text('game_title').notNullable().unique();
+    tbl.text('password');
+    tbl.boolean('private').defaultTo(false);
   });
 
 exports.down = knex => knex.schema.dropTableIfExists("todo");

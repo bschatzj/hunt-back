@@ -5,7 +5,7 @@ module.exports = router
 
 router.post('/newgame', (req, res) => {
     const Game = NewGame(req.body)
-
+    console.log(Game)
     res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameId: Game.game_id })
 
 })

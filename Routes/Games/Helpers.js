@@ -1,6 +1,6 @@
-const db = require('../../../data/db')
+const db = require('../../data/db')
 
-addAdmin = async newGame => {
+NewGame = async newGame => {
     await db('game').insert({
         game_title: newGame.title,
         password: newGame.password,

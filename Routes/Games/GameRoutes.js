@@ -16,5 +16,5 @@ router.post('/newgame', async (req, res) => {
         .where('game_title', req.body.title)
         .first()
 
-    res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameId: GameInfo.game })
+    res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameId: GameInfo })
 })

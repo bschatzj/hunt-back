@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken'),
-
+{JWT_SECRET} = require('../../env')
 
 authenticate = async (req, res, next) => {
 const token = req.headers.Authorization
@@ -19,13 +19,10 @@ jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
 
 
 const generateToken = user => {
-  const payload = {
-    ...user,
-  }
   const options = {
     expiresIn: '1d',
   }
-  return jwt.sign(payload, JWT_SECRET, options)
+  return jwt.sign(JWT_SECRET, options)
 }
 
 module.exports = { authenticate, generateToken }

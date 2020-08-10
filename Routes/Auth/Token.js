@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken'),
-{JWT_SECRET} = require('../../env')
 
 authenticate = async (req, res, next) => {
 const token = req.headers.Authorization

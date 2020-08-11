@@ -4,12 +4,15 @@ exports.up = knex =>
     tbl.text('title')
     .notNullable()
     tbl.text('description')
+    tbl.text('photo')
     tbl.integer('task')
     .references('task_id')
     .inTable('tasks')
     tbl.integer('user')
     .references('user_id')
     .inTable('users')
+    tbl.integer('votes')
+    .defaultTo(0)
   });
 
 exports.down = knex => knex.schema.dropTableIfExists("todo");

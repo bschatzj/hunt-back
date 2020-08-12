@@ -1,13 +1,19 @@
 const router = require('express-promise-router')(),
   { valBody, validatePassword } = require('./MiddleAuth'),
   { generateToken } = require('../Token')
+  db = require('../../../data/db')
 
 module.exports = router
 
 router.post('/', valBody, validatePassword, (req, res) => {
   const { email , password } = req.body
   const token = generateToken(req.body)
-  res.json({ email , token })
+
+  const user = db('users')
+  .where('email', email)
+  .first()
+
+  res.json({ 'user': user , token })
 })
 
 router.use((err, req, res, next) =>

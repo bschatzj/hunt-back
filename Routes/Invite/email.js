@@ -10,16 +10,15 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var mailOptions = {
-  from: 'scavenge@gmail.com',
-  to: 'brendanschatz97@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
-};
-
-
-
 router.post('/send', (req,res) => {
+    console.log(req.body)
+
+    var mailOptions = {
+        from: 'scavenge@gmail.com',
+        to: req.body.emails,
+        subject: 'You have been challenged!',
+        text: req.body.public ? '!' : null,
+      };
     
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {

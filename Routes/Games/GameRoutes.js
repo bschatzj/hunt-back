@@ -1,6 +1,6 @@
 const router = require('express-promise-router')(),
     { NewGame } = require('./Helpers');
-const db = require('../../data/db');
+db = require('../../data/db');
 const { authenticate } = require('../Auth/Token');
 
 

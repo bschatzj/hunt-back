@@ -5,11 +5,11 @@ const router = require('express-promise-router')(),
 
 module.exports = router
 
-router.post('/', valBody, validatePassword, (req, res) => {
+router.post('/', valBody, validatePassword, async (req, res) => {
   const { email , password } = req.body
   const token = generateToken(req.body)
 
-  const user = db('users')
+  const user = await db('users')
   .where('email', email)
   .first()
 

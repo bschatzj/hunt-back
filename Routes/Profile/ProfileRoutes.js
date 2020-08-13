@@ -17,7 +17,7 @@ router.get('/games/:id', async (req, res) => {
     const gameList = []
     games.forEach(game => {
         let gameInfo = db('game')
-        .where('game_id', game.game)
+        .where('game_title', game.game)
         .first()
 
         gameList.push(gameInfo)

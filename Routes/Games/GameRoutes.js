@@ -45,12 +45,11 @@ router.get('/alltasks/:id', async (req, res) => {
     res.status(200).json({ tasks: allTasks })
 })
 
-router.post('/joingame/:game', async (req, res) => {
-    const name = req.params
-    console.log(name)
+router.post('/joingame', async (req, res) => {
+
     console.log(req.body)
     db('list').insert({
-        game: name,
+        game: req.body.game,
         user: req.body.user,
         display_name: req.body.name
     })

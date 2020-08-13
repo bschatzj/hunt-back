@@ -10,6 +10,7 @@ module.exports = router
 
 router.get('/games/:id', async (req, res) => {
     const id = req.params.id
+    console.log(id)
     const games = await db('list')
     .where('user', id)
     console.log(games)

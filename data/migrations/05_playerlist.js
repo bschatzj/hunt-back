@@ -5,8 +5,8 @@ exports.up = knex =>
     tbl.integer('user')
     .references('user_id')
     .inTable('users')
-    tbl.integer('game')
-    .references('game_id')
+    tbl.string('game')
+    .references('game_title')
     .inTable('game')
   });
 

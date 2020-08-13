@@ -45,18 +45,18 @@ router.get('/alltasks/:id', async (req, res) => {
     res.status(200).json({ tasks: allTasks })
 })
 
-router.post('/joingame/:game', (req, res) => {
+router.post('/joingame/:game', async (req, res) => {
     const {name} = req.params
-    const game = db('game')
+    const game = await db('game')
     .where('game_title', name)
     .first()
-
-    db('list').insert({
-        game: game.game_id,
-        user: req.body.user,
-        display_name: req.body.name
+    .then(game => {
+        db('list').insert({
+            game: game.game_id,
+            user: req.body.user,
+            display_name: req.body.name
+        })
     })
-
     res.status(200).json({game})
 })
 

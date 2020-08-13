@@ -10,11 +10,10 @@ const { authenticate } = require('../Auth/Token');
 module.exports = router
 
 router.post('/newgame', async (req, res) => {
-    return db('game').insert(req.body)
-    .then(id => {
-      console.log(id)
-      return db('game').where('game_id', id)
-        .first()
+    await db('game').insert({
+        game_title: req.body.title,
+        password: req.body.password,
+        private: req.body.private
     })
     .then(info => {
         res.status(200).json(info)

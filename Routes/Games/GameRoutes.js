@@ -46,8 +46,9 @@ router.get('/alltasks/:id', async (req, res) => {
 })
 
 router.post('/joingame/:game', async (req, res) => {
-    const { name } = req.params
-
+    const name = req.params
+    console.log(name)
+    console.log(req.body)
     db('list').insert({
         game: name,
         user: req.body.user,

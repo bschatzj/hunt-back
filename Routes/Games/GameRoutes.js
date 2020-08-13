@@ -10,7 +10,12 @@ const db = require('../../data/db');
 module.exports = router
 
 router.post('/newgame', async (req, res) => {
-    NewGame(req.body)
+    return db('game').insert(gameInfo)
+    .then(id => {
+      console.log(id)
+      return db('game').where('game_id', id)
+        .first()
+    })
     .then(info => {
         res.status(200).json(info)
     })

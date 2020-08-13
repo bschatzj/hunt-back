@@ -8,9 +8,10 @@ module.exports = router
 
 
 
-router.get('/games', async (req, res) => {
+router.get('/games/:id', async (req, res) => {
+    const id = req.params.id
     const games = await db('list')
-    .where('user', req.body.id)
+    .where('user', id)
     console.log(games)
     const gameList = []
     games.forEach(game => {

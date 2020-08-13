@@ -10,7 +10,7 @@ const { authenticate } = require('../Auth/Token');
 module.exports = router
 
 router.post('/newgame', async (req, res) => {
-    return db('game').insert(gameInfo)
+    return db('game').insert(req.body)
     .then(id => {
       console.log(id)
       return db('game').where('game_id', id)

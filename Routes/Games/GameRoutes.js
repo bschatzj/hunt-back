@@ -2,6 +2,7 @@ const router = require('express-promise-router')(),
     { NewGame } = require('./Helpers');
 db = require('../../data/db');
 const { authenticate } = require('../Auth/Token');
+const db = require('../../data/db');
 
 
 
@@ -9,25 +10,27 @@ const { authenticate } = require('../Auth/Token');
 module.exports = router
 
 router.post('/newgame', async (req, res) => {
-    await db('game').insert({
-        game_title: req.body.title,
-        password: req.body.password,
-        private: req.body.private,
+    NewGame(req.body)
+    .then(info => {
+        res.status(200).json(info)
+    })
+    .catch(err => {
+        res.status(500).json(err)
     })
     
-    const GameInfo = await db('game')
-        .where('game_title', req.body.title)
-        .first()
-        .then()  
-        await db('list').insert({
-            display_name: req.body.name,
-            user: req.body.id,
-            game: gameInfo.game_id,
-        })
+    // const GameInfo = await db('game')
+    //     .where('game_title', req.body.title)
+    //     .first()
+    //     .then()  
+    //     await db('list').insert({
+    //         display_name: req.body.name,
+    //         user: req.body.id,
+    //         game: gameInfo.game_id,
+    //     })
 
     // const Players = await db('list')
     //     .where('game', GameInfo.game_id)
-    res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameInfo: GameInfo})
+    //res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameInfo: GameInfo})
 })
 
 router.post('/newtask/:id', authenticate, async (req, res) => {

@@ -51,13 +51,15 @@ router.post('/joingame/:game', async (req, res) => {
     .where('game_title', name)
     .first()
     .then(game => {
+        console.log(game)
         db('list').insert({
             game: game.game_id,
             user: req.body.user,
             display_name: req.body.name
         })
     })
-    res.status(200).json({game})
+    .then(res.status(200).json({game}))
+    .catch(err => {res.status(500).json(err)})
 })
 
 router.get('/game/:id', async (req, res) => {

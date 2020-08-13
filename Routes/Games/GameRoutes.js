@@ -25,8 +25,8 @@ router.post('/newgame', authenticate, async (req, res) => {
             game: gameInfo.game_id,
         })
 
-    const Players = await db('list')
-        .where('game', GameInfo.game_id)
+    // const Players = await db('list')
+    //     .where('game', GameInfo.game_id)
     res.status(200).json({ message: `Game ${req.body.title} was succesfully created`, gameInfo: GameInfo})
 })
 

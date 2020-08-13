@@ -14,6 +14,7 @@ jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
       .status(401)
       .json({ message: 'Authentication Failure', token: false })
   req.decodedToken = decodedToken
+  console.log('working')
   next()
 })
 }

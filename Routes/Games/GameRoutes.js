@@ -16,7 +16,7 @@ router.post('/newgame', async (req, res) => {
         private: req.body.private
     })
     .then(info => {
-        res.status(200).json(info)
+        res.status(200).json({message:"Game was made successfully!", title: req.body.title})
     })
     .catch(err => {
         res.status(500).json(err)

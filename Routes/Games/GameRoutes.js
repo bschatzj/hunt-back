@@ -5,6 +5,7 @@ const { authenticate } = require('../Auth/Token');
 
 
 
+
 module.exports = router
 
 router.post('/newgame', authenticate, async (req, res) => {
@@ -13,9 +14,16 @@ router.post('/newgame', authenticate, async (req, res) => {
         password: req.body.password,
         private: req.body.private,
     })
+    
     const GameInfo = await db('game')
         .where('game_title', req.body.title)
         .first()
+        .then()  
+        await db('list').insert({
+            display_name: req.body.name,
+            user: req.body.id,
+            game: gameInfo.game_id,
+        })
 
     const Players = await db('list')
         .where('game', GameInfo.game_id)

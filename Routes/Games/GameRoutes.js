@@ -2,6 +2,8 @@ const router = require('express-promise-router')(),
     { NewGame } = require('./Helpers');
 db = require('../../data/db');
 const { authenticate } = require('../Auth/Token');
+const { as } = require('../../data/db');
+const db = require('../../data/db');
 
 
 
@@ -57,18 +59,15 @@ router.post('/joingame', async (req, res) => {
         .catch(err => { res.status(500).json(err) })
 })
 
-router.get('/game/:id', async (req, res) => {
-    const { id } = req.params
+router.get('/game/:name', async (req, res) => {
+    const { name } = req.params
     const GameInfo = await db('game')
-        .where('game_id', id)
+        .where('game_title', name)
         .first()
 
     const Players = await db('list')
-        .where('game', id)
+        .where('game', name)
 
-
-    const allTasks = await db('tasks')
-        .where('game_id', id)
 
     res.status(201).json({ gameInfo: GameInfo, Players: Players, tasks: allTasks })
 })
@@ -99,6 +98,12 @@ router.get('/subs/:id', (req, res) => {
     res.status(200).json({ posts: posts })
 })
 
+router.get('/games/all', async (req, res) => {
+    games = await db('game')
+    .where('private', true)
+
+    res.status(200).json({'games': games})
+})
 
 
 router.use((err, req, res, next) =>

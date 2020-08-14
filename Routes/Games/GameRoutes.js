@@ -96,7 +96,7 @@ router.get('/subs/:id', (req, res) => {
 
 router.get('/games/all', async (req, res) => {
     games = await db('game')
-    .where('private', true)
+    .where('private', false)
 
     res.status(200).json({'games': games})
 })

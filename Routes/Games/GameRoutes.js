@@ -3,10 +3,6 @@ const router = require('express-promise-router')(),
 db = require('../../data/db');
 const { authenticate } = require('../Auth/Token');
 const { as } = require('../../data/db');
-const db = require('../../data/db');
-
-
-
 
 
 module.exports = router

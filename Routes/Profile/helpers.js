@@ -6,11 +6,8 @@ module.exports = {
 }
 
 function update(id, update) {
-    const newId = parseInt(id)
-    console.log(update)
-    console.log(newId)
     db('users')
-        .where('user_id', newId)
+        .where('user_id', update.user_id)
         .update('icon', update.icon)
         .then(console.log('working!!!'))
         .catch(err => { console.log(err) })

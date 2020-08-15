@@ -6,6 +6,6 @@ module.exports = {
 
 function update(id, update) {
     return db('users')
-    .where({ id })
+    .where('user_id', id)
     .update(update)
 }

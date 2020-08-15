@@ -2,7 +2,7 @@ const router = require('express-promise-router')(),
     db = require('../../data/db');
 const { authenticate } = require('../Auth/Token');
 import {update} from './helpers'
-import { up } from '../../data/migrations/02_users';
+
 
 
 module.exports = router

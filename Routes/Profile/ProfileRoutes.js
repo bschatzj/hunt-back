@@ -28,7 +28,7 @@ router.get('/profile/:id', async (req, res) => {
     res.status(200).json({profile: user})
 })
 
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:id', (req, res) => {
     const id = req.params
     console.log(req.body)
     const newInfo = req.body

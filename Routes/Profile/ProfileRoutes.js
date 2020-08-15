@@ -1,7 +1,7 @@
 const router = require('express-promise-router')(),
     db = require('../../data/db');
 const { authenticate } = require('../Auth/Token');
-import {update} from './helpers'
+const {update} = require('./helpers')
 
 
 

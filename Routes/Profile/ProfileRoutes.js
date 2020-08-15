@@ -29,7 +29,7 @@ router.get('/profile/:id', async (req, res) => {
 
 router.put('/update/:id', async (req, res) => {
     const id = req.params
-    
+    console.log(req.body)
     await db('users')
     .where('user_id', id)
     .first()

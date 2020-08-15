@@ -7,7 +7,8 @@ module.exports = {
 
 function update(id, update) {
     console.log(update)
-    return db('users')
+    db('users')
     .where('user_id', id)
     .update('icon', update.icon)
+    .then(console.log('working!!!'))
 }

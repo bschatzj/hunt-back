@@ -30,10 +30,8 @@ router.get('/profile/:id', async (req, res) => {
 
 router.put('/update/:id', (req, res) => {
     const id = req.params
-    console.log(id)
-    console.log(req.body)
     const newInfo = req.body
     update(id, newInfo)
-    .then(res => res.status(200).json(res))
-    .catch(err => res.status(500).json(err))
+
+    res.status(200)
 })

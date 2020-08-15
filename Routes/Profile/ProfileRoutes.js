@@ -1,7 +1,8 @@
 const router = require('express-promise-router')(),
     db = require('../../data/db');
 const { authenticate } = require('../Auth/Token');
-
+import {update} from './helpers'
+import { up } from '../../data/migrations/02_users';
 
 
 module.exports = router
@@ -31,10 +32,7 @@ router.put('/update/:id', async (req, res) => {
     const id = req.params
     console.log(req.body)
     const newInfo = req.body
-    await db('users')
-    .where('user_id', id)
-    .first()
-    .update(newInfo)
-    .then(res.status(200).json("update complete"))
-    .catch(err => {res.status(500).json(err)})
+    update(id, newInfo)
+    .then(res => res.status(200).json(res))
+    .catch(err => res.status(500).json(err))
 })

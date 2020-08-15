@@ -28,7 +28,9 @@ router.get('/profile/:id', async (req, res) => {
 })
 
 router.put('/update/:id', async (req, res) => {
-    const user = await db('users')
+    const id = req.params
+    
+    await db('users')
     .where('user_id', id)
     .first()
     .update(req.body)

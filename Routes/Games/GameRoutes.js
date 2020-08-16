@@ -66,7 +66,7 @@ router.get('/game/:name', async (req, res) => {
         .where('game', name)
 
 
-    res.status(201).json({ gameInfo: GameInfo, Players: Players, tasks: allTasks })
+    res.status(201).json({ gameInfo: GameInfo, Players: Players})
 })
 
 router.post('/submit/:id', async (req, res) => {

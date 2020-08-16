@@ -57,6 +57,7 @@ router.post('/joingame', async (req, res) => {
 
 router.get('/game/:name', async (req, res) => {
     const { name } = req.params
+    console.log(name)
     const GameInfo = await db('game')
         .where('game_title', name)
         .first()

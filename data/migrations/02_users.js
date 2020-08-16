@@ -11,7 +11,7 @@ exports.up = knex =>
     .notNullable()
     tbl.text('display_name')
     tbl.text('icon')
-    .defaultTo('https://img.icons8.com/cute-clipart/64/000000/bug.png')
+    .defaultTo('http://www.clipartbest.com/cliparts/dir/eqz/direqzE9T.png')
   });
 
 exports.down = knex => knex.schema.dropTableIfExists("todo");

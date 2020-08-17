@@ -40,7 +40,7 @@ router.put('/update/:id', (req, res) => {
 router.post('/profiles', async (req, res) => {
     const ids = req.body.ids
     console.log(ids)
-    const users = db('users')
+    const users = await db('users')
         .where ('user_id', ids)
 
     console.log(users)

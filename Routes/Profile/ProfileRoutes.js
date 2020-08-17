@@ -43,6 +43,6 @@ router.post('/profiles', async (req, res) => {
     const users = db('users')
         .where ('user_id', ids)
 
-
+    console.log(users)
     res.status(200).json({profile: users})
 })

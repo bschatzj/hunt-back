@@ -64,21 +64,9 @@ router.get('/game/:name', async (req, res) => {
 
     const Players = await db('list')
         .where('game', name)
-
-    const PlayerList = []
-
     
-    Players.map(person => {
-        console.log(person)
-        console.log(persons)
-        const users =  db('users')
-        .where('user_id', person.user)
-        .first()
 
-        console.log(users)
-        PlayerList.push(users)
-    })
-    res.status(201).json({ gameInfo: GameInfo, Players: PlayerList})
+    res.status(201).json({ gameInfo: GameInfo, Players: Players})
 })
 
 router.post('/submit/:id', async (req, res) => {

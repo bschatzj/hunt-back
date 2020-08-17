@@ -72,10 +72,11 @@ router.get('/game/:name', async (req, res) => {
     
     Players.map(person => {
         console.log(person)
-        persons
+        console.log(persons)
+        const users = persons
         .where('user_id', person.user)
 
-        PlayerList.push(persons)
+        PlayerList.push(users)
     })
     res.status(201).json({ gameInfo: GameInfo, Players: PlayerList})
 })

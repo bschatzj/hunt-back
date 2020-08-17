@@ -38,10 +38,10 @@ router.put('/update/:id', (req, res) => {
 
 
 router.post('/profiles', async (req, res) => {
-    const ids = req.body.ids
+    const ids = [req.body.ids]
     console.log(ids)
     const users = await db('users')
-        .where ('user_id', In (ids))
+        .where 'user_id' In (ids)
 
     res.status(200).json({profile: users})
 })

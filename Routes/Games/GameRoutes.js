@@ -75,6 +75,7 @@ router.get('/game/:name', async (req, res) => {
         console.log(persons)
         const users = persons
         .where('user_id', person.user)
+        .first( )
 
         PlayerList.push(users)
     })

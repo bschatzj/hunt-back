@@ -67,8 +67,12 @@ router.get('/game/:name', async (req, res) => {
 
     const PlayerList = []
 
+
+    const persons = await db('users')
+    
     Players.map(person => {
-        let persons = db ('users')
+        console.log(person)
+        persons
         .where('user_id', person.user)
 
         PlayerList.push(persons)

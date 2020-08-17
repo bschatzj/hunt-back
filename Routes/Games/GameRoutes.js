@@ -75,8 +75,9 @@ router.get('/game/:name', async (req, res) => {
         console.log(persons)
         const users = persons
         .where('user_id', person.user)
-        .first( )
+        .first()
 
+        console.log(users)
         PlayerList.push(users)
     })
     res.status(201).json({ gameInfo: GameInfo, Players: PlayerList})

@@ -37,7 +37,7 @@ router.put('/update/:id', (req, res) => {
 })
 
 
-router.get('/profiles', async (req, res) => {
+router.post('/profiles', async (req, res) => {
     const ids = req.body.ids
     console.log(ids)
     const users = await db('users')

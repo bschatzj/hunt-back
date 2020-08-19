@@ -23,18 +23,15 @@ router.post('/newgame', async (req, res) => {
 })
 
 router.post('/newtask/:id', async (req, res) => {
-    console.log(id)
-    console.log(req.body)
     const { id } = req.params
+    console.log(req.body)
     await db('tasks').insert({
         game_id: id,
         title: req.body.title,
         description: req.body.description
     })
-    const allTasks = await db('tasks')
-        .where('game_id', id)
 
-    res.status(200).json({ tasks: allTasks })
+    res.status(200).json({ 'task added!' })
 })
 
 router.get('/alltasks/:id', async (req, res) => {

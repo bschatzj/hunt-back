@@ -31,7 +31,7 @@ router.post('/newtask/:id', async (req, res) => {
         description: req.body.description
     })
 
-    res.status(200).json({ 'task added!' })
+    res.status(200).json( 'task added!' )
 })
 
 router.get('/alltasks/:id', async (req, res) => {

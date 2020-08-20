@@ -15,9 +15,9 @@ router.post('/send', (req,res) => {
 
     var mailOptions = {
         from: 'scavenge@gmail.com',
-        to: req.body.emails,
+        to: req.body.email,
         subject: 'You have been challenged!',
-        text: req.body.public ? '!' : null,
+        text: req.body.message,
       };
     
     transporter.sendMail(mailOptions, function(error, info){

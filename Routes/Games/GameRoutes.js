@@ -102,13 +102,16 @@ router.get('/games/all', async (req, res) => {
 })
 
 
-router.get('/task/:id', async (req, res) => {
+router.post('/task/:id', async (req, res) => {
     const {id} = req.params
+    const game = req.body.game
     const task = await db('tasks')
     .where('task_id', id)
     .first()
 
-    res.status(200).json({'task': task})
+    const users = await db ('list')
+    .where('game', game)
+    res.status(200).json({'task': task, 'users': users })
 })
 
 

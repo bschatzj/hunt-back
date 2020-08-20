@@ -1,7 +1,7 @@
 const router = require('express-promise-router')(),
     { NewGame } = require('./Helpers');
-db = require('../../data/db');
 const { authenticate } = require('../Auth/Token');
+const db = require('../../data/db');
 
 
 
@@ -99,6 +99,16 @@ router.get('/games/all', async (req, res) => {
     .where('private', false)
 
     res.status(200).json({'games': games})
+})
+
+
+router.get('/task/:id', async (req, res) => {
+    const {id} = req.params
+    const task = await db('tasks')
+    .where('task_id', id)
+    .first()
+
+    res.status(200).json({'task': task})
 })
 
 

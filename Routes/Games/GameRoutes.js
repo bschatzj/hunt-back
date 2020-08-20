@@ -34,12 +34,16 @@ router.post('/newtask/:id', async (req, res) => {
     res.status(200).json( 'task added!' )
 })
 
-router.get('/alltasks/:id', async (req, res) => {
+router.post('/alltasks/:id', async (req, res) => {
     const { id } = req.params
+    const game = req.body.game
     const allTasks = await db('tasks')
         .where('game_id', id)
 
-    res.status(200).json({ tasks: allTasks })
+    const Players = await db('list')
+        .where(game, game)
+
+    res.status(200).json({ tasks: allTasks, players: Players })
 })
 
 router.post('/joingame', async (req, res) => {

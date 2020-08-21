@@ -4,21 +4,18 @@ const jwt = require('jsonwebtoken'),
 
   authenticate = async (req, res, next) => {
     const token = req.headers.Authorization
-    console.log(token)
-    if (!token)
-      return res
-        .status(401)
-        .json({ message: 'Authentication Failure', token: false })
-    jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
-      if (err){
-        console.log(err)
-        return res
-          .status(401)
-          .json({ message: 'Authentication Failure', token: false })}
-      req.decodedToken = decodedToken
-      console.log('working')
-      next()
-    })
+    if (token) {
+      jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
+        if (err) {
+          res.status(401).json({ message: "Invalid Token" });
+        } else {
+          req.decodedToken = decodedToken;
+          next();
+        }
+      });
+    } else {
+      res.status(401).json({ message: "Did not recieve token" });
+    }
   }
 
 

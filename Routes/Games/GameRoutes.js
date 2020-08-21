@@ -70,6 +70,7 @@ router.get('/game/:name', async (req, res) => {
 
 router.post('/submit/:id', async (req, res) => {
     const { id } = req.params
+    console.log(req.body)
 
     db('submissions').insert({
         task: id,
@@ -108,7 +109,7 @@ router.post('/task/:id', async (req, res) => {
     const task = await db('tasks')
     .where('task_id', id)
     .first()
-
+ 
     const users = await db ('list')
     .where('game', game)
     res.status(200).json({'task': task, 'users': users })

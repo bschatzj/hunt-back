@@ -64,8 +64,11 @@ router.get('/game/:name', async (req, res) => {
     const Players = await db('list')
         .where('game', name)
     
+    const subs = await db('submissions')
+        .where(game, name)
+    
 
-    res.status(201).json({ gameInfo: GameInfo, Players: Players})
+    res.status(201).json({ gameInfo: GameInfo, Players: Players, Subs: subs})
 })
 
 router.post('/submit/:id', async (req, res) => {
@@ -113,6 +116,15 @@ router.post('/task/:id', async (req, res) => {
     const users = await db ('list')
     .where('game', game)
     res.status(200).json({'task': task, 'users': users })
+})
+
+router.get('/gamesubs/:title', async (req, res) => {
+    const {title} = req.params
+
+    const subs = await db('submissions')
+    .where(game, title)
+
+    res.status(200).json(subs)
 })
 
 

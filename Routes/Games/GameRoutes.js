@@ -80,10 +80,7 @@ router.post('/submit/:id', async (req, res) => {
         title: req.body.title
     })
 
-    const submissions = db('submissions')
-        .where(task, id)
-
-    res.status(200).json(submissions)
+    res.status(200).json('success')
 })
 
 router.get('/subs/:id', (req, res) => {

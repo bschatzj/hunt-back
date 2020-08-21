@@ -87,7 +87,7 @@ router.get('/subs/:id', (req, res) => {
     const { task } = req.params
 
     const posts = db('submissions')
-        .where('task', task)
+        .where('task', parseInt(task))
 
     res.status(200).json({ posts: posts })
 })

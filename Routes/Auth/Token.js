@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken'),
         .json({ message: 'Authentication Failure', token: false })
     jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
       if (err){
+        console.log(err)
         return res
           .status(401)
           .json({ message: 'Authentication Failure', token: false })}

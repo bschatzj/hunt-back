@@ -7,7 +7,7 @@ const db = require('../../data/db');
 
 module.exports = router
 
-router.post('/newgame', async (req, res) => {
+router.post('/newgame', authenticate, async (req, res) => {
     await db('game').insert({
         game_title: req.body.title,
         password: req.body.password,

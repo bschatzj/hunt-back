@@ -84,10 +84,10 @@ router.post('/submit/:id', async (req, res) => {
 })
 
 router.get('/subs/:id', async (req, res) => {
-    const { task } = req.params
-    console.log(task)
+    const { id } = req.params
+    console.log( id )
     const posts = await db('submissions')
-        .where('task', task)
+        .where('task', id)
 
 
     console.log(posts)

@@ -72,7 +72,8 @@ router.post('/submit/:id', async (req, res) => {
     const { id } = req.params
     console.log(req.body)
 
-    db('submissions').insert({
+    await db('submissions')
+        .insert({
         task: parseInt(id),
         user: parseInt(req.body.user),
         photo: req.body.photo,

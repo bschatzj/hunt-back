@@ -79,8 +79,8 @@ router.post('/submit/:id', async (req, res) => {
         description: req.body.description,
         title: req.body.title
     })
-    .then(res => {res.status(200).json(res)})
-    .catch(err => {console.log(err)})
+
+    res.status(200).json('success')
 })
 
 router.get('/subs/:id', async (req, res) => {

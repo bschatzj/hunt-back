@@ -81,7 +81,8 @@ router.post('/submit/:id', async (req, res) => {
         user: parseInt(req.body.user),
         photo: req.body.photo,
         description: req.body.description,
-        title: req.body.title
+        title: req.body.title,
+        game: req.body.game
     })
 
     res.status(200).json('success')

@@ -83,10 +83,10 @@ router.post('/submit/:id', async (req, res) => {
     res.status(200).json('success')
 })
 
-router.get('/subs/:id', (req, res) => {
+router.get('/subs/:id', async (req, res) => {
     const { task } = req.params
 
-    const posts = db('submissions')
+    const posts = await db('submissions')
         .where('task', parseInt(task))
 
 

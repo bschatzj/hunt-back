@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken'),
   authenticate = async (req, res, next) => {
     const token = req.headers.Authorization
     if (token) {
-      jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
+      jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
         if (err) {
           res.status(401).json({ message: "Invalid Token" });
         } else {

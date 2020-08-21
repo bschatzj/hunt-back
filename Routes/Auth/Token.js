@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken'),
 
 
   authenticate = async (req, res, next) => {
-    const token = req.headers.Authorization
+    const token = req.headers
     console.log('token', token)
     console.log('secret', JWT_SECRET)
     if (token) {

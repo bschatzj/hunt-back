@@ -85,13 +85,13 @@ router.post('/submit/:id', async (req, res) => {
 
 router.get('/subs/:id', (req, res) => {
     const { task } = req.params
-    
+
     const posts = db('submissions')
         .where('task', parseInt(task))
 
 
     console.log(posts)
-    res.status(200).json({ posts: posts })
+    res.status(200).json({ posts })
 })
 
 router.get('/games/all', async (req, res) => {

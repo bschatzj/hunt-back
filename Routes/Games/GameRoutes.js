@@ -65,7 +65,7 @@ router.get('/game/:name', async (req, res) => {
         .where('game', name)
     
     const subs = await db('submissions')
-        .where(game, name)
+        .where('game', name)
     
 
     res.status(201).json({ gameInfo: GameInfo, Players: Players, Subs: subs})

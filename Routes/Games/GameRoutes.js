@@ -80,6 +80,7 @@ router.post('/submit/:id', async (req, res) => {
         title: req.body.title
     })
     .then(res => {res.status(200).json(res)})
+    .catch(err => {console.log(err)})
 })
 
 router.get('/subs/:id', async (req, res) => {

@@ -13,6 +13,9 @@ exports.up = knex =>
     .inTable('users')
     tbl.integer('votes')
     .defaultTo(0)
+    tbl.text('game')
+    .references('game_title')
+    .inTable('game')
   });
 
 exports.down = knex => knex.schema.dropTableIfExists("todo");

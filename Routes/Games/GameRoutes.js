@@ -12,7 +12,7 @@ router.post('/newgame', authenticate, async (req, res) => {
         game_title: req.body.title,
         password: req.body.password,
         private: req.body.private,
-        end_date: req.body.end_date
+        end_date: Date(req.body.end_date)
     })
         .then(info => {
             res.status(200).json({ message: "Game was made successfully!", title: req.body.title })

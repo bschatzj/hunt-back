@@ -4,7 +4,7 @@ exports.up = knex =>
     tbl.text('game_title').notNullable().unique();
     tbl.text('password');
     tbl.boolean('private').defaultTo(false);
-    tbl.integer('end_date')
+    tbl.bigInt('end_date')
   });
 
 exports.down = knex => knex.schema.dropTableIfExists("todo");

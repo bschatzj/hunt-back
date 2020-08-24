@@ -11,7 +11,8 @@ router.post('/newgame', authenticate, async (req, res) => {
     await db('game').insert({
         game_title: req.body.title,
         password: req.body.password,
-        private: req.body.private
+        private: req.body.private,
+        end_date: req.body.end_date
     })
         .then(info => {
             res.status(200).json({ message: "Game was made successfully!", title: req.body.title })

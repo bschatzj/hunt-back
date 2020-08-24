@@ -9,7 +9,7 @@ module.exports = router
 
 
 
-router.get('/games/:id', async (req, res) => {
+router.get('/games/:id', authenticate, async (req, res) => {
     const id = req.params.id
     console.log(id)
     const games = await db('list')
@@ -19,7 +19,7 @@ router.get('/games/:id', async (req, res) => {
     res.status(200).json({ "gameList": games })
 })
 
-router.get('/profile/:id', async (req, res) => {
+router.get('/profile/:id', authenticate, async (req, res) => {
     const id = req.params.id
     const user = await db('users')
         .where('user_id', id)
@@ -28,7 +28,7 @@ router.get('/profile/:id', async (req, res) => {
     res.status(200).json({profile: user})
 })
 
-router.put('/update/:id', (req, res) => {
+router.put('/update/:id', authenticate, (req, res) => {
     const id = req.params
     const newInfo = req.body
     update(id, newInfo)

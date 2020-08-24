@@ -22,7 +22,7 @@ router.post('/newgame', authenticate, async (req, res) => {
 
 })
 
-router.post('/newtask/:id', async (req, res) => {
+router.post('/newtask/:id', authenticate, async (req, res) => {
     const { id } = req.params
     console.log(req.body)
     await db('tasks').insert({
@@ -34,7 +34,7 @@ router.post('/newtask/:id', async (req, res) => {
     res.status(200).json( 'task added!' )
 })
 
-router.get('/alltasks/:id', async (req, res) => {
+router.get('/alltasks/:id', authenticate, async (req, res) => {
     const { id } = req.params
     const allTasks = await db('tasks')
         .where('game_id', id)
@@ -54,7 +54,7 @@ router.post('/joingame', async (req, res) => {
         .catch(err => { res.status(500).json(err) })
 })
 
-router.get('/game/:name', async (req, res) => {
+router.get('/game/:name',authenticate, async (req, res) => {
     const { name } = req.params
     console.log(name)
     const GameInfo = await db('game')
@@ -71,7 +71,7 @@ router.get('/game/:name', async (req, res) => {
     res.status(201).json({ gameInfo: GameInfo, Players: Players, Subs: subs})
 })
 
-router.post('/submit/:id', async (req, res) => {
+router.post('/submit/:id', authenticate, async (req, res) => {
     const { id } = req.params
     console.log(req.body)
 
@@ -88,7 +88,7 @@ router.post('/submit/:id', async (req, res) => {
     res.status(200).json('success')
 })
 
-router.get('/subs/:id', async (req, res) => {
+router.get('/subs/:id',authenticate, async (req, res) => {
     const { id } = req.params
     console.log( id )
     const posts = await db('submissions')
@@ -99,7 +99,7 @@ router.get('/subs/:id', async (req, res) => {
     res.status(200).json({ posts })
 })
 
-router.get('/games/all', async (req, res) => {
+router.get('/games/all', authenticate, async (req, res) => {
     games = await db('game')
     .where('private', false)
 
@@ -107,7 +107,7 @@ router.get('/games/all', async (req, res) => {
 })
 
 
-router.post('/task/:id', async (req, res) => {
+router.post('/task/:id', authenticate, async (req, res) => {
     const {id} = req.params
     const game = req.body.game
     const task = await db('tasks')
@@ -119,7 +119,7 @@ router.post('/task/:id', async (req, res) => {
     res.status(200).json({'task': task, 'users': users })
 })
 
-router.get('/gamesubs/:title', async (req, res) => {
+router.get('/gamesubs/:title', authenticate, async (req, res) => {
     const {title} = req.params
 
     const subs = await db('submissions')

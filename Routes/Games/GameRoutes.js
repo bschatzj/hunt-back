@@ -96,9 +96,11 @@ router.get('/subs/:id',authenticate, async (req, res) => {
     const posts = await db('submissions')
         .where('task', id)
 
-
+    const votes = await db('votes')
+        .where('task', id)
+    
     console.log(posts)
-    res.status(200).json({ posts })
+    res.status(200).json({ posts, votes})
 })
 
 router.get('/games/all', authenticate, async (req, res) => {
@@ -138,8 +140,8 @@ router.post('/vote/:id', async (req, res ) => {
 
     await db('votes')
     .insert({
-        'user': req.body.id,
-        'task': id
+        'user': parseInt(req.body.id),
+        'task': parseInt(id)
     })
     res.status(200).json('Vote Cast')
 })

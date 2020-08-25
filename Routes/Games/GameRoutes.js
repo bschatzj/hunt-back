@@ -133,6 +133,17 @@ router.get('/gamesubs/:title', authenticate, async (req, res) => {
     res.status(200).json(subs)
 })
 
+router.post('/vote/:id', async (req, res ) => {
+    const {id} = req.params
+
+    await db('votes')
+    .insert({
+        'user': req.body.id,
+        'task': id
+    })
+    res.status(200).json('Vote Cast')
+})
+
 
 router.use((err, req, res, next) =>
     res.status(500).json({

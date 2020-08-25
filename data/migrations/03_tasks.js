@@ -10,4 +10,4 @@ exports.up = knex =>
     .notNullable()
   });
 
-exports.down = knex => knex.schema.dropTableIfExists("todo");
+exports.down = knex => knex.schema.dropTableIfExists("tasks");

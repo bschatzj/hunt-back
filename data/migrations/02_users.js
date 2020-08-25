@@ -14,4 +14,4 @@ exports.up = knex =>
     .defaultTo('http://www.clipartbest.com/cliparts/dir/eqz/direqzE9T.png')
   });
 
-exports.down = knex => knex.schema.dropTableIfExists("todo");
+exports.down = knex => knex.schema.dropTableIfExists("users");

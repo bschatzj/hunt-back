@@ -115,10 +115,13 @@ router.post('/task/:id', authenticate, async (req, res) => {
     const task = await db('tasks')
     .where('task_id', id)
     .first()
+
+    const votes = await db ('votes')
+    .where('task',id)
  
     const users = await db ('list')
     .where('game', game)
-    res.status(200).json({'task': task, 'users': users })
+    res.status(200).json({'task': task, 'users': users, 'votes':votes })
 })
 
 router.get('/gamesubs/:title', authenticate, async (req, res) => {

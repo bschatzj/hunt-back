@@ -18,4 +18,4 @@ exports.up = knex =>
     .inTable('game')
   });
 
-exports.down = knex => knex.schema.dropTableIfExists("todo");
+exports.down = knex => knex.schema.dropTableIfExists("submissions");

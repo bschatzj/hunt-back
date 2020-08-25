@@ -7,4 +7,4 @@ exports.up = knex =>
     tbl.bigInteger('end_date')
   });
 
-exports.down = knex => knex.schema.dropTableIfExists("todo");
+exports.down = knex => knex.schema.dropTableIfExists("game");

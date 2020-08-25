@@ -3,7 +3,7 @@ exports.up = knex =>
     tbl.integer('user')
     .references('user_id')
     .inTable('users')
-    tbl.string('task')
+    tbl.integer('task')
     .references('task_id')
     .inTable('tasks')
   });

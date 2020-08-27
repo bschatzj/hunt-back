@@ -9,7 +9,7 @@ router.post('/', valBody, hashPassword, async (req, res) => {
   const admin = await addAdmin(req.body)
   const token = generateToken(admin)
   console.log(admin)
-  res.status(201).json({ first_name: admin.first_name, token })
+  res.status(201).json({ 'id': admin.user_id, token })
 })
 
 router.use((err, req, res, next) =>
